@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+using namespace std;
+bool is_Identifier(string s){
+    if(!((s[0] <= 'z' && s[0] >= 'a')||(s[0] <= 'Z' && s[0] >= 'A')|| s[0] == '_')){
+        return false;
+    }
+    for(int i = 1;i < s.size();i++){
+        if(!((s[i] <= 'z' && s[i] >= 'a')||(s[i] <= 'Z' && s[i] >= 'A')|| s[i] == '_' || ((s[i] <= '9' && s[i] >= '0')))){
+            return false;
+        }
+    }
+    return true;
+}
+int main(){
+    ifstream f;
+    f.open("sample.txt");
+    if (f.is_open()){
+        string line;
+        while (getline(f, line)) {
+            cout << line << ": ";
+            if(is_Identifier(line)){
+                cout<<"Identifier"<<endl;
+            }
+            else{
+                cout<<"Not Identifier"<<endl;
+            }
+
+        }
+        f.close();
+    }
+    else {
+        cerr << "Error opening file!" << endl;
+    }
+}
